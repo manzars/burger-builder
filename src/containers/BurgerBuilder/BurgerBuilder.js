@@ -69,29 +69,39 @@ class BurgerBuilder extends Component {
     }
 
     continuePurchaseHandler = () => {
-        this.setState(
-            { loading: true }
-        )
-        // alert("Order Placed Successfully!")
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: "Manzar Shaikh",
-                address: {
-                    street: "Juhu Lane",
-                    zipCode: "400049",
-                    country: "India"
-                },
-                email: "manzarshaikh69@gmail.com"
-            }
+        // this.setState(
+        //     { loading: true }
+        // )
+        // // alert("Order Placed Successfully!")
+        // const order = {
+        //     ingredients: this.state.ingredients,
+        //     price: this.state.totalPrice,
+        //     customer: {
+        //         name: "Manzar Shaikh",
+        //         address: {
+        //             street: "Juhu Lane",
+        //             zipCode: "400049",
+        //             country: "India"
+        //         },
+        //         email: "manzarshaikh69@gmail.com"
+        //     }
+        // }
+        // axios.post("/orders.json", order)
+        // .then(response => {
+        //     this.setState({loading: false})
+        // })
+        // .catch(error => {
+        //     this.setState({loading: false})
+        // })
+
+        let query = []
+        for(let i in this.state.ingredients){
+            query.push(encodeURIComponent(i) + "=" + encodeURIComponent(this.state.ingredients[i]))
         }
-        axios.post("/orders.json", order)
-        .then(response => {
-            this.setState({loading: false})
-        })
-        .catch(error => {
-            this.setState({loading: false})
+        const queryParam = query.join("&")
+        this.props.history.push({
+            pathname: '/checkout',
+            search: "?" + queryParam
         })
         this.setState(
             { 
@@ -101,7 +111,8 @@ class BurgerBuilder extends Component {
                     bacon: 0,
                     cheese: 0,
                     meat: 0
-                }
+                },
+                totalPrice: 40
             }
         )
     }

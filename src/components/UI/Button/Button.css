@@ -10,6 +10,11 @@
     font-weight: bold;
 }
 
+.Button:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
 .Danger {
     color: #944317;
 }

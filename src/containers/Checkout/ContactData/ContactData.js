@@ -5,6 +5,7 @@ import axios from '../../../axios-orders'
 import Spinner from '../../../components/UI/Spinner/Spinner'
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler'
 import Input from '../../../components/UI/Input/Input'
+import {connect} from 'react-redux'
 
 class ContactData extends Component {
 
@@ -108,7 +109,7 @@ class ContactData extends Component {
         }
 
         const order = {
-            ingredients: this.props.ingredients,
+            ingredients: this.props.ings,
             price: this.props.price,
             formData
         }
@@ -199,4 +200,11 @@ class ContactData extends Component {
     }
 }
 
-export default withErrorHandler(ContactData, axios)
+const mapStateToProps = state => {
+    return {
+        ings: state.ingredients,
+        price: state.totalPrice
+    }
+}
+
+export default connect(mapStateToProps)(withErrorHandler(ContactData, axios))

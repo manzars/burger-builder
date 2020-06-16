@@ -4,10 +4,15 @@ import './index.css';
 import App from './containers/App';
 import {BrowserRouter as Router} from 'react-router-dom'
 import {Provider} from 'react-redux'
-import {createStore} from 'redux'
-import reducer from './store/reduces';
+import {createStore, compose, applyMiddleware} from 'redux'
+import burgerBuilder from './store/reducers/burgerBuilder';
+import thunk from 'redux-thunk'
 
-const store = createStore(reducer)
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+const store = createStore(burgerBuilder, composeEnhancers(
+    applyMiddleware(thunk)
+))
 
 const app = (
     <Provider store = {store}>

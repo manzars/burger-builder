@@ -87,12 +87,11 @@ class ContactData extends Component {
                         {value: "cheapest", display: "Cheapest"}
                     ]
                 },
-                value: '',
+                value: 'fastest',
                 validation: {},
                 valid: true
             }
         },
-        loading: false,
         validForm: false
     }
 
@@ -181,7 +180,7 @@ class ContactData extends Component {
                 <Button disabled = {!this.state.validForm} clicked = {this.submitHandler} btnType = "Success" >ORDER</Button>
             </form>
         )
-        if(this.state.loading){
+        if(this.props.loading){
             form = <Spinner />
         }
 
@@ -196,14 +195,15 @@ class ContactData extends Component {
 
 const mapStateToProps = state => {
     return {
-        ings: state.ingredients,
-        price: state.totalPrice
+        ings: state.burgerBuilder.ingredients,
+        price: state.burgerBuilder.totalPrice,
+        loading: state.order.loading
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onOrderBurger: (orderData) => dispatch(actions.purchaseBurgerStart(orderData))
+        onOrderBurger: (orderData) => dispatch(actions.purchaseBurger(orderData))
     }
 }
 

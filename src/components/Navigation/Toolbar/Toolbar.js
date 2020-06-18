@@ -5,7 +5,6 @@ import NavigationItems from '../NavigationItems/NavigationItems'
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle'
 
 function Toolbar(props) {
-    console.log()
     return (
         <header className={classes.Toolbar}>
             <DrawerToggle clicked = {props.drawerToggleClicked} />
@@ -13,7 +12,7 @@ function Toolbar(props) {
                 <Logo/>
             </div>
             <nav className={classes.DesktopOnly}>
-                <NavigationItems />
+                <NavigationItems isAuth = {props.isAuth} />
             </nav>
         </header>
     )

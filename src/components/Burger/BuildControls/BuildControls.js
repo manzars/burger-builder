@@ -22,7 +22,7 @@ const controls = [
 ]
 
 function BuildControls(props) {
-    console.log(props.purchasable)
+    console.log(props.isAuth, "Manzar")
     return (
         <div className={classes.BuildControls}>
             <p>Current Price: <strong>{props.price.toFixed(2)} Rupees</strong></p>
@@ -38,7 +38,7 @@ function BuildControls(props) {
             <button
                 disabled = {!props.purchasable}
                 onClick={props.purchasing}
-                className={classes.OrderButton}>ORDER NOW
+                className={classes.OrderButton}>{props.isAuth ? "ORDER NOW" : "SIGN UP TO CONTINUE"}
             </button>
         </div>
     )

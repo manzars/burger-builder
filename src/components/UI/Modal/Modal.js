@@ -10,10 +10,6 @@ class Modal extends React.Component {
         return nextProps.show !== this.props.show || this.props.children !== nextProps.children
     }
 
-    componentWillUpdate() {
-        console.log("Nothings Happen")
-    }
-
     render() {
         return (
             <Aux>

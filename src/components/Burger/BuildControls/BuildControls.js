@@ -22,7 +22,6 @@ const controls = [
 ]
 
 function BuildControls(props) {
-    console.log(props.isAuth, "Manzar")
     return (
         <div className={classes.BuildControls}>
             <p>Current Price: <strong>{props.price.toFixed(2)} Rupees</strong></p>
